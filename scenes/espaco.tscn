@@ -1,0 +1,98 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://scenes/nave.tscn" type="PackedScene" id=1]
+[ext_resource path="res://recursos/fundo.png" type="Texture" id=2]
+[ext_resource path="res://scripts/espaco.gd" type="Script" id=3]
+[ext_resource path="res://BAUHS93.TTF" type="DynamicFontData" id=4]
+
+[sub_resource type="Animation" id=1]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("cenario:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 262.495, 408 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("cenario2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 262.495, -410 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "espaco"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("cenario:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 283, 399.5 ), Vector2( 283, 1227.5 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("cenario2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 283, -418.5 ), Vector2( 283, 409.5 ) ]
+}
+
+[sub_resource type="DynamicFont" id=3]
+size = 37
+font_data = ExtResource( 4 )
+
+[node name="espaco" type="Node2D"]
+position = Vector2( 0, 1 )
+script = ExtResource( 3 )
+
+[node name="nave" parent="." instance=ExtResource( 1 )]
+position = Vector2( 250, 748 )
+collision_mask = 2
+
+[node name="cenario" type="Sprite" parent="."]
+position = Vector2( 262.495, 408 )
+z_index = -20
+texture = ExtResource( 2 )
+
+[node name="cenario2" type="Sprite" parent="."]
+position = Vector2( 262.495, -410 )
+z_index = -20
+texture = ExtResource( 2 )
+
+[node name="anim_espaco" type="AnimationPlayer" parent="."]
+autoplay = "espaco"
+playback_speed = 0.3
+anims/RESET = SubResource( 1 )
+anims/espaco = SubResource( 2 )
+
+[node name="label" type="Label" parent="."]
+margin_right = 523.0
+margin_bottom = 56.0
+custom_colors/font_color = Color( 0.898039, 1, 0, 1 )
+custom_fonts/font = SubResource( 3 )
+text = "Pontos: o "
+align = 1
+valign = 1

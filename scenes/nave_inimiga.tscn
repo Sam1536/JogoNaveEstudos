@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://recursos/nave_inimiga.png" type="Texture" id=1]
+[ext_resource path="res://scripts/nave_inimiga.gd" type="Script" id=2]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 51.0392
+
+[node name="nave_inimiga" type="Area2D"]
+collision_layer = 2
+script = ExtResource( 2 )
+
+[node name="sprite" type="Sprite" parent="."]
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 1 )
+
+[node name="shape" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[connection signal="area_entered" from="." to="." method="_on_nave_inimiga_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_nave_inimiga_body_entered"]
